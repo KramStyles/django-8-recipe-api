@@ -1,4 +1,4 @@
-FROM 3.9-alpine
+FROM python:3.9-alpine
 LABEL Karm Designs
 
 # To keep the app from Unbuffering

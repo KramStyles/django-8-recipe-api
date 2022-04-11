@@ -1,15 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+
 class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **kwargs):
         """Creates and saves a new user"""
+        if not email:
+            raise ValueError('Email Address should be provided')
         user = self.model(email=email.lower(), **kwargs)
         user.set_password(password)
         user.save()
 
         return user
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     """Custom email that supports using email instead of username"""

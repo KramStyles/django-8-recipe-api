@@ -23,3 +23,9 @@ class TestModels(TestCase):
         """Test to check if email address was provided"""
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user(None)
+
+    def test_to_create_super_user(self):
+        user = get_user_model().objects.create_superuser(self.email, self.password)
+
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_staff)
